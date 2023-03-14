@@ -1,0 +1,83 @@
+{
+
+    "chem_formula": "Ag13",
+    "dimension": 1,
+    "num_replicas": 2,
+    "geo_type": "cp2k",
+    "iteration": 3,
+    "temperature": 600,
+    "step_size": 0.4,
+    "max_force": 0.01,
+    
+    "geo_params":
+    {
+        "FORCE_EVAL":{
+          "DFT":{
+            "UKS": "T",
+            "BASIS_SET_FILE_NAME": "/public/home/fqgong/common-files/cp2k/BASIS_MOLOPT",
+            "POTENTIAL_FILE_NAME": "/public/home/fqgong/common-files/cp2k/GTH_POTENTIALS",
+            "SCF":{
+              "SCF_GUESS": "RESTART",
+              "EPS_SCF": 1.0E-6,
+              "MAX_SCF": 50,
+              "OUTER_SCF": {
+                "EPS_SCF": 1.0E-6,
+                "MAX_SCF": 20
+              },
+              "OT":{
+                "MINIMIZER": "CG",
+                "ENERGY_GAP": 0.1
+              }
+            },
+            "XC":{
+              "XC_FUNCTIONAL":{"_": "PBE"},
+              "vdW_POTENTIAL":{
+                "DISPERSION_FUNCTIONAL": "PAIR_POTENTIAL",
+                "PAIR_POTENTIAL":{
+                  "TYPE": "DFTD3",
+                  "PARAMETER_FILE_NAME": "/public/home/fqgong/common-files/cp2k/dftd3.dat",
+                  "REFERENCE_FUNCTIONAL": "PBE"
+                }
+              }
+            }
+          },
+          "SUBSYS":{
+            "KIND":{
+              "_": ["Ag"],
+              "POTENTIAL": ["GTH-PBE-q11"],
+              "BASIS_SET": ["TZV2P-MOLOPT-SR-GTH"]
+            }
+          }
+        }
+    },    
+    
+    "machine_dict":
+    {
+      "command": "mpiexec.hydra cp2k.popt -i input.inp",
+      "machine":{
+        "batch_type": "Slurm",
+        "context_type": "LocalContext",
+        "local_root": "./",
+        "remote_root": "/public/home/fqgong/has-to-be-done/BHMC/tmp"
+      },
+      "resources": {
+        "number_node": 1,
+        "cpu_per_node": 64,
+        "gpu_per_node": 0,
+        "exclude_list": [],
+        "source_list": [],
+        "queue_name": "small_s_cg",
+        "group_size": 1,
+        "custom_flags": [
+          "#SBATCH --job-name=labeling"
+        ],
+        "module_list": [
+          "intel/2020.2",
+          "mpi/2021.1.1",
+          "gcc/9.3",
+          "cp2k/8.2-intel"
+        ]
+      }
+    }
+
+}
