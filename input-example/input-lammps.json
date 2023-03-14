@@ -1,6 +1,6 @@
 {
 
-    "chem_formula": "Ni65",
+    "chem_formula": "Ni13",
     "dimension": 1,
     "num_replicas": 20,
     "ini_style": "symmetry",
@@ -18,7 +18,7 @@
     
     "geo_params":
     {
-        "model_path": "/public/home/fqgong/universal-potentials/pure_clusters/constructions/Ni/iter.000047/00.train/graph.000.pb",
+        "model_path": "./graph.000.pb",
         "nsteps": 1,
         "trj_freq": 1,
         "ener_tol": 0,
