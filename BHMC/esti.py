@@ -1,6 +1,6 @@
 import math
 import random
-from run.run import Run,CP2KRun,LAMMPSRun
+from BHMC.run import Run,CP2KRun,LAMMPSRun
 
 
 
