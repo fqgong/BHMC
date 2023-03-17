@@ -3,7 +3,7 @@ import sys
 import json
 import random
 import numpy as np
-from BHMC.glob import glob
+from glob import glob
 from BHMC.make_files import Make_Folders, Make_CP2K_Files, Make_LAMMPS_Files
 from BHMC.gen_structure import Gen_Structure, Gen_Initial_Structure, Perturb_Structure
 from BHMC.run import Run, CP2KRun, LAMMPSRun
