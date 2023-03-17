@@ -3,12 +3,12 @@ import sys
 import json
 import random
 import numpy as np
-from glob import glob
-from make_files import Make_Folders, Make_CP2K_Files, Make_LAMMPS_Files
-from gen_structure import Gen_Structure, Gen_Initial_Structure, Perturb_Structure
-from run import Run, CP2KRun, LAMMPSRun
-from info import Info_Distill, CP2K_Info, LAMMPS_Info, Info_Factory
-from esti import Estimation
+from BHMC.glob import glob
+from BHMC.make_files import Make_Folders, Make_CP2K_Files, Make_LAMMPS_Files
+from BHMC.gen_structure import Gen_Structure, Gen_Initial_Structure, Perturb_Structure
+from BHMC.run import Run, CP2KRun, LAMMPSRun
+from BHMC.info import Info_Distill, CP2K_Info, LAMMPS_Info, Info_Factory
+from BHMC.esti import Estimation
 
 input_file = str(sys.argv[1])
 
