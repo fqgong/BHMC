@@ -1,0 +1,4 @@
+dpdata>=0.2.0
+pyxtal>=0.5.0
+dpdispatcher>=0.5.0
+ase>=3.21.0
