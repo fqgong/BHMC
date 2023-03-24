@@ -17,6 +17,7 @@ class Estimation:
             run_type, machine_dict ={
                 'cp2k':(CP2KRun,self.machine_dict),
                 'lammps':(LAMMPSRun,self.machine_dict),
+                'refine':(REFINERun,self.machine_dict)
             }.get(self.style,None)
             return run_type(machine_dict) 
         else: 
@@ -28,5 +29,6 @@ class Estimation:
             run_type, machine_dict = {
                 'cp2k':(CP2KRun,self.machine_dict),
                 'lammps':(LAMMPSRun,self.machine_dict),
+                'refine':(REFINERun,self.machine_dict)
             }.get(self.style,None)
             return run_type(machine_dict)
