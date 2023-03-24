@@ -51,3 +51,27 @@ class LAMMPSRun(Run):
             errlog='lammps.err'
         )
         return task
+
+class REFINERun(Run):
+    def __init__(self,inp_dict):
+        super().__init__(inp_dict)
+    def gen_mlp_task(self,num_iter,num_task=1):
+        task = Task(
+            command=self.inp_dict['mlp_command']
+            task_work_path='iter.{}/task.1/'.format(num_iter)
+            forward_files=['input.lammps','conf.lmp','frozen_model.pb'],
+            backward_files['BH_GEO-pos-1.xyz','log.lammps'],
+            outlog='lammps.log',
+            errlog='lammps.err',
+        )
+        return task
+    def gen_fp_task(self,num_iter,num_task=1):
+        task = Task(
+            command=self.inp_dict['fp_command'],
+            task_work_path='iter.{}/task.1/fp/'.format(num_iter),
+            forward_files=['input.inp','coord.xyz'],
+            backward_files=['*'],
+            outlog='cp2k.log',
+            errlog='cp2k.err'
+        )
+        return task
