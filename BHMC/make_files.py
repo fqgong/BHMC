@@ -7,16 +7,11 @@ from ase.io import read,write
 
 
 class Make_Folders:
-    def __init__(self,num_iter,num_task,add_fp=False):
+    def __init__(self,num_iter,num_task):
         self.num_iter = num_iter
         self.num_task = num_task
         self.path = os.getcwd()
-        self.style = geo_type
-        if add_fp:
-            self.num_task = 1
-            self.folder_path = self.path+'/BHMC-workflow/iter.{}'.format(self.num_iter)+'/task.{}/fp'.format(self.num_task)
-        else:
-            self.folder_path = self.path+'/BHMC-workflow/iter.{}'.format(self.num_iter)+'/task.{}'.format(self.num_task)
+        self.folder_path = self.path+'/BHMC-workflow/iter.{}'.format(self.num_iter)+'/task.{}'.format(self.num_task)
     def make_folders(self):
         if os.path.exists(self.folder_path):
             num_folders = len(glob(self.folder_path+'*'))
@@ -323,11 +318,3 @@ class Make_LAMMPS_Files(Make_Folders):
                 f.write(lammps_input)
         else:
             shutil.copyfile(os.path.abspath(input_path),os.path.join(self.folder_path,'input.lammps'))
-
-class Make_REFINE_Files(Make_Folders):
-     def __init__(self,num_iter,num_task=1):
-         super().__init__(num_iter,num_task=1)
-     def make_lammps_files(self, stc, params_dict, input_path=None):
-         Make_LAMMPS_FILES.make_files(self,stc,params_dict,input_path=None)
-     def make_cp2k_files(self, stc, params_dict, input_path=None):
-         Make_CP2K_Files.make_files(self,stc,params_dict,input_path=None)
